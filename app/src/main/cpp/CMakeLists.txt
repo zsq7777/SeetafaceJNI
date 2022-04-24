@@ -29,6 +29,36 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/seetaface6/include)
 ## 添加动态库搜索文件
 link_directories(${CMAKE_CURRENT_SOURCE_DIR}/seetaface6/jniLibs/${ANDROID_ABI})
 
+# 导入三方库
+add_library(SeetaFaceDetector600
+        SHARED
+        IMPORTED)
+# 设置关联的 so 库名称、目标位置
+# ${CMAKE_SOURCE_DIR} 是 CMakeLists.txt 所在目录
+set_target_properties(SeetaFaceDetector600
+        PROPERTIES IMPORTED_LOCATION
+        ${CMAKE_SOURCE_DIR}/seetaface6/jniLibs/${ANDROID_ABI}/libSeetaFaceDetector600.so )
+
+# 导入三方库
+add_library(TenniS
+        SHARED
+        IMPORTED)
+# 设置关联的 so 库名称、目标位置
+# ${CMAKE_SOURCE_DIR} 是 CMakeLists.txt 所在目录
+set_target_properties(TenniS
+        PROPERTIES IMPORTED_LOCATION
+        ${CMAKE_SOURCE_DIR}/seetaface6/jniLibs/${ANDROID_ABI}/libTenniS.so )
+
+# 导入三方库
+add_library(SeetaAuthorize
+        SHARED
+        IMPORTED)
+# 设置关联的 so 库名称、目标位置
+# ${CMAKE_SOURCE_DIR} 是 CMakeLists.txt 所在目录
+set_target_properties(SeetaAuthorize
+        PROPERTIES IMPORTED_LOCATION
+        ${CMAKE_SOURCE_DIR}/seetaface6/jniLibs/${ANDROID_ABI}/libSeetaAuthorize.so )
+
 
 add_library(
         seetafacejni # 生成SO库名 libseetafacejni.so
@@ -36,7 +66,6 @@ add_library(
         SHARED # shard 共享库/动态函数库/windws上叫动态加载函数库dll  库的类型
 
         native-lib.cpp # 也可以添加其他文件进入动态库
-        ${DIR_SRCS}  # seetaface6
 )
 
 
